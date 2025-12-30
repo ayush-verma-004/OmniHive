@@ -129,12 +129,12 @@ const Cart = () => {
                                 {item.size && <span className="text-xs text-gray-500">Size: {item.size}</span>}
                             </div>
 
-                            <div className="flex items-center gap-3 bg-gray-900 rounded-lg p-1">
-                                <button onClick={() => updateQuantity(item.id, -1)} className="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-text">
+                            <div className="flex items-center gap-3 bg-bg border border-border rounded-lg p-1">
+                                <button onClick={() => updateQuantity(item.id, -1)} className="p-1 hover:bg-primary/10 rounded-lg text-text-muted hover:text-primary transition-colors">
                                     <Minus className="w-4 h-4" />
                                 </button>
-                                <span className="text-text font-medium w-6 text-center">{item.quantity || 1}</span>
-                                <button onClick={() => updateQuantity(item.id, 1)} className="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-text">
+                                <span className="text-text font-bold w-6 text-center">{item.quantity || 1}</span>
+                                <button onClick={() => updateQuantity(item.id, 1)} className="p-1 hover:bg-primary/10 rounded-lg text-text-muted hover:text-primary transition-colors">
                                     <Plus className="w-4 h-4" />
                                 </button>
                             </div>
@@ -174,10 +174,17 @@ const Cart = () => {
                             <input type="tel" name="phone" required placeholder="Phone Number" onChange={handleInputChange} className="input-field" />
                             <textarea name="address" required placeholder="Delivery Address" onChange={handleInputChange} className="input-field" rows="2"></textarea>
 
-                            <div className="bg-gray-900/50 p-3 rounded-lg border border-border/50">
-                                <label className="block text-xs font-bold text-primary-light uppercase mb-2">Requested Delivery Time</label>
-                                <input type="time" name="deliveryTime" required onChange={handleInputChange} value={customer.deliveryTime} className="input-field bg-gray-800" />
-                                <p className="text-[10px] text-gray-500 mt-1 italic">Please specify your preferred delivery time.</p>
+                            <div className="bg-primary/5 p-4 rounded-xl border border-primary/10">
+                                <label className="block text-xs font-bold text-primary uppercase mb-2 tracking-wider">Requested Delivery Time</label>
+                                <input
+                                    type="time"
+                                    name="deliveryTime"
+                                    required
+                                    onChange={handleInputChange}
+                                    value={customer.deliveryTime}
+                                    className="input-field"
+                                />
+                                <p className="text-[10px] text-text-muted mt-2 italic">Please specify your preferred delivery time.</p>
                             </div>
 
                             <button type="submit" disabled={loading} className="w-full btn-primary flex items-center justify-center gap-2 mt-6">
