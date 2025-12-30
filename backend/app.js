@@ -42,15 +42,12 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(frontendPath));
 
     // Handle SPA routing
-    app.get('(.*)', (req, res) => {
-        // If the request is for an API route that wasn't found, don't serve index.html
-        if (req.originalUrl.startsWith('/api')) {
-            return res.status(404).json({
-                status: 'fail',
-                message: `Can't find ${req.originalUrl} on this server!`
-            });
+    app.use((req, res, next) => {
+        // If it's a GET request and NOT for an API or static file that exists
+        if (req.method === 'GET' && !req.path.startsWith('/api')) {
+            return res.sendFile(path.resolve(frontendPath, 'index.html'));
         }
-        res.sendFile(path.resolve(frontendPath, 'index.html'));
+        next();
     });
 } else {
     // Unhandled Routes (Development only)
