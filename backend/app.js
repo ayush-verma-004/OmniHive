@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(frontendPath));
 
     // Handle SPA routing
-    app.get('*', (req, res) => {
+    app.get('(.*)', (req, res) => {
         // If the request is for an API route that wasn't found, don't serve index.html
         if (req.originalUrl.startsWith('/api')) {
             return res.status(404).json({
